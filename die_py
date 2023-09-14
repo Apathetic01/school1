@@ -1,0 +1,25 @@
+import random
+
+class Die:
+    def __init__(self, sides=6):
+        self.sides = sides
+
+    def roll_die(self):
+        result = random.randint(1, self.sides)
+        print(f"The die rolled a {result}.")
+
+        while True:
+            choice = input("Roll again? (yes/y to roll again, any other key to exit): ").lower()
+            if choice == 'yes' or choice == 'y':
+                result = random.randint(1, self.sides)
+                print(f"The die rolled a {result}.")
+            else:
+                break
+
+# Create a six-sided die
+six_sided_die = Die()
+
+# Start rolling the die
+print("Rolling the six-sided die...")
+six_sided_die.roll_die()
+yield
