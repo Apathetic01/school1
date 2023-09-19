@@ -1,0 +1,29 @@
+__build_class_ random_walk
+
+import random
+import matplotlib.pyplot as plt
+
+# Parameters
+num_steps = 1000  # Number of steps in the random walk
+
+# Initialize variables
+position = 0  # Starting position
+positions = [position]  # List to store positions at each step
+
+# Perform the random walk
+for _ in range(num_steps):
+    # Generate a random step (either +1 or -1)
+    step = random.choice([-1, 1])
+    
+    # Update the current position
+    position += step
+    
+    # Append the current position to the list
+    positions.append(position)
+
+# Plot the random walk
+plt.plot(range(num_steps + 1), positions)
+plt.xlabel("Step Number")  # Use plt.xlabel to set the label for the x-axis
+plt.ylabel("Position")     # Use plt.ylabel to set the label for the y-axis
+plt.title("One-Dimensional Random Walk")
+plt.show()

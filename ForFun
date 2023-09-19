@@ -1,0 +1,71 @@
+from turtle import *
+
+# Set up the drawing environment
+setup(width=1.0, height=1.0)
+bgcolor("white")  # Set a white background for higher contrast
+tracer(5)
+hideturtle()
+
+# Function to draw a star-like shape
+def draw_star(size, color):
+    fillcolor(color)
+    begin_fill()
+    for _ in range(5):
+        forward(size)
+        right(144)
+    end_fill()
+
+# Function to create a symmetrical formation of stars
+def create_symmetrical_formation():
+    penup()
+    goto(0, 0)  # Center of the screen
+    pendown()
+
+    for _ in range(5):
+        draw_star(100, "white")
+        right(144)
+
+# Function to create the animated pattern
+def create_animated_pattern():
+    speed(0)
+
+    # Use brighter colors for higher contrast
+    colors = ["#FF5733", "#8C7CFF", "#A5FF54", "#FFA6C9", "#00E6E6", "#FF3366", "#33CCFF", "black"]
+    switch = True
+
+    for i, col in enumerate(colors):
+        if i >= 6:
+            switch = False
+            begin_fill()
+            color(col)
+            draw_star(235, col)
+            end_fill()
+            width(2)
+        elif i > 1 and i < 3 or i > 4 and i < 6:
+            color(col)
+            draw_star(235, col)
+        elif switch:
+            color(col)
+            draw_star(235, col)
+            clear()
+
+# Function to create the mirrored pattern
+def create_mirrored_pattern():
+    create_symmetrical_formation()
+
+    for _ in range(2):
+        create_animated_pattern()
+        right(180)
+
+# Function to create the pattern with multiple copies
+def create_pattern_with_copies(num_copies):
+    for _ in range(num_copies):
+        create_mirrored_pattern()
+        left(360 / num_copies)
+
+# Create the pattern with multiple copies and repeat indefinitely
+while True:
+    clear()
+    create_pattern_with_copies(7)  # Change the number of copies as needed
+
+done()
